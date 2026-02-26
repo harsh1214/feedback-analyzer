@@ -17,7 +17,7 @@ class Request(BaseModel):
 
 @app.get('/')
 def serve_index():
-    return FileResponse(STATIC_PATH)
+    return print(str(STATIC_PATH))
 
 @app.post('/api/predict/')
 def predict_feedback(req: Request):
