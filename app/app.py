@@ -15,10 +15,9 @@ class Request(BaseModel):
     sentence: str
     aspect: str
 
-
 @app.get('/')
 def root():
-    return FileResponse("static/index.html")
+    return FileResponse(STATIC_PATH / "index.html")
 
 @app.post('/api/predict/')
 def predict_feedback(req: Request):
