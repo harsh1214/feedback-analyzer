@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    </head>
+    <body class="bg-black text-white min-h-screen">
+        <div class="py-8 lg:px-12 px-4 container mx-auto">
+            <h1 class="text-center lg:text-3xl sm:text-2xl text-xl font-bold">Aspect Based Sentiment Analysis</h1>
+            <div class="flex flex-col items-center justify-center lg:pt-20 pt-12">
+                <div class="flex flex-col items-center justify-center gap-4 w-full">
+                    <input class="w-full max-w-[768px] border-white/40 border rounded-sm px-4 py-2" id="sentence" placeholder="Enter sentence" />
+                    <input class="w-full max-w-[768px] border-white/40 border rounded-sm px-4 py-2" id="aspect" placeholder="Enter aspect" />
+                    <button class="border-white/40 border px-4 py-2 rounded-md hover:cursor-pointer hover:bg-purple-800">Analyze</button>
+                </div>
+            </div>
+            <div class="text-center mt-8 sm:text-lg text-base" id="result"></div>
+        </div>
+
+        <script>
+            async function analyze() {
+                const sentence = document.getElementById("sentence").value;
+                const aspect = document.getElementById("aspect").value;
+
+                if (!sentence || !aspect) {
+                    document.getElementById("result").innerText = "Please enter both sentence and aspect value to analyze";
+                    return;
+                }
+
+                const resultEl = document.getElementById("result");
+                resultEl.innerText = "Analyzing...";
+
+                try {
+                    const response = await fetch("/api/predict/", {
+                        method: "POST",
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify({ sentence, aspect })
+                    });
+                    const data = await response.json();
+                    const sentimentColor = data.sentiment === "positive" ? "text-green-400" : data.sentiment === "negative" ? "text-red-400" : "text-yellow-400";
+                    resultEl.innerHTML = `
+                        <span class='flex flex-col items-center justify-center gap-2'>
+                            <span class='${sentimentColor} font-bold'>
+                                Sentiment: ${data.sentiment}
+                            </span>
+                            <span class='text-base text-white/90'>
+                                Confidence: ${data.confidence}
+                            </span>
+                        </span>
+                        `;
+                } catch (error) {
+                    resultEl.innerText = "Error: Something went wrong";
+                }
+
+            }
+
+            document.querySelector("button").addEventListener("click", analyze);
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,5 @@
+venv/
+data/
+app/__pycache__/
+app/trainer_output/
+model/
