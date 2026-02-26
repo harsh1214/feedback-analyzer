@@ -1,16 +1,13 @@
 import torch
 import torch.nn.functional as F
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
-from pathlib import Path
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+MODEL_NAME = "harsh1214/feedback-analyzer"
 
-BASE_DIR = Path(__file__).resolve().parent
-MODEL_PATH = BASE_DIR / ".." / "model"
-
-tokenizer = DistilBertTokenizerFast.from_pretrained(str(MODEL_PATH))
-model = DistilBertForSequenceClassification.from_pretrained(str(MODEL_PATH))
+tokenizer = DistilBertTokenizerFast.from_pretrained(str(MODEL_NAME))
+model = DistilBertForSequenceClassification.from_pretrained(str(MODEL_NAME))
 model.to(device)
 
 id2label = model.config.id2label
