@@ -1,16 +1,16 @@
 import torch
 import torch.nn.functional as F
-from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
 
+tokenizer = None
+model = None
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-MODEL_NAME = "harsh1214/feedback-analyzer"
+def load_model(tokenizer_, model_):
+    global tokenizer, model
+    tokenizer = tokenizer_
+    model = model_
 
-tokenizer = DistilBertTokenizerFast.from_pretrained(str(MODEL_NAME))
-model = DistilBertForSequenceClassification.from_pretrained(str(MODEL_NAME))
 model.to(device)
-
-id2label = model.config.id2label
 
 def predict(sentence: str, aspect: str):
     text = sentence + " [SEP] " + aspect
@@ -32,11 +32,9 @@ def predict(sentence: str, aspect: str):
     probs = F.softmax(logits, dim=1)
 
     confidence, pred_id = torch.max(probs, dim=1)
+    id2label = model.config.id2label
 
     return {
         "sentiment": id2label[pred_id.item()],
         "confidence": round(confidence.item(), 3),
-        "probabilities": {
-            id2label[i]: round(probs[0][i].item(), 3) for i in range(len(id2label))
-        }
     }
