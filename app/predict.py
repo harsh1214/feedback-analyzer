@@ -1,18 +1,23 @@
 import torch
 import torch.nn.functional as F
+from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
 
 tokenizer = None
 model = None
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-def load_model(tokenizer_, model_):
-    global tokenizer, model
-    tokenizer = tokenizer_
-    model = model_
+MODEL_NAME = "harsh1214/feedback-analyzer"
 
-model.to(device)
+def load_model():
+    global tokenizer, model
+    if tokenizer is None or model is None:
+        tokenizer = DistilBertTokenizerFast.from_pretrained(MODEL_NAME)
+        model = DistilBertForSequenceClassification.from_pretrained(MODEL_NAME)
+        model.to(device)
+        model.eval()
 
 def predict(sentence: str, aspect: str):
+    load_model()
     text = sentence + " [SEP] " + aspect
 
     inputs = tokenizer(
