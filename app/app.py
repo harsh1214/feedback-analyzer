@@ -13,7 +13,7 @@ INDEX_FILE = BASE_DIR / "static" / "index.html"
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("🚀 Lifespan START")
+    print("Lifespan START")
 
     try:
         print("Importing transformers...")
@@ -37,7 +37,7 @@ async def lifespan(app: FastAPI):
         raise e
 
     yield
-    print("🛑 Lifespan END")
+    print("Lifespan END")
 
 app = FastAPI(lifespan=lifespan)
 
