@@ -1,4 +1,4 @@
-# 🍽️ NLP Feedback Analyzer for Restaurants (Aspect-Based Sentiment Analysis)
+## NLP Feedback Analyzer for Restaurants (Aspect-Based Sentiment Analysis)
 
 An end-to-end **Aspect-Based Sentiment Analysis (ABSA)** system for restaurant feedback, built using **Transformers (DistilBERT)** and deployed with **FastAPI** and a lightweight **HTML + Tailwind CSS UI**.
 
@@ -6,7 +6,7 @@ This project allows users to enter a **review sentence** and a specific **aspect
 
 ---
 
-## 🚀 Key Features
+### 🚀 Key Features
 
 - Aspect-aware sentiment analysis (not generic sentiment)
 - Transformer-based model (DistilBERT)
@@ -17,7 +17,7 @@ This project allows users to enter a **review sentence** and a specific **aspect
 
 ---
 
-## 🧠 Problem Statement
+### 🧠 Problem Statement
 
 Traditional sentiment analysis answers:
 > *Is this review positive or negative?*
@@ -25,7 +25,7 @@ Traditional sentiment analysis answers:
 This project answers:
 > *What is the sentiment **about a specific aspect** in the review?*
 
-### Example
+#### Example
 **Sentence:**  
 `The food was great but the service was slow`
 
@@ -37,7 +37,7 @@ This project answers:
 
 ---
 
-## 🧪 Model Overview
+### 🧪 Model Overview
 
 - **Model:** `distilbert-base-uncased`
 - **Task:** 4-class Aspect-Based Sentiment Classification
@@ -59,7 +59,7 @@ This enables the model to focus on sentiment relevant to the given aspect.
 
 ---
 
-## 🧱 System Architecture
+### 🧱 System Architecture
 
 ```
 Browser UI (HTML + Tailwind)
@@ -75,7 +75,7 @@ Sentiment + Confidence
 
 ---
 
-## 📁 Project Structure
+### 📁 Project Structure
 
 ```
 .
@@ -91,9 +91,9 @@ Sentiment + Confidence
 
 ---
 
-## ⚙️ API Endpoints
+### ⚙️ API Endpoints
 
-### Serve UI
+#### Serve UI
 ```
 GET /
 ```
@@ -101,7 +101,7 @@ Serves the frontend HTML page.
 
 ---
 
-### Predict Sentiment
+#### Predict Sentiment
 ```
 POST /api/predict/
 ```
@@ -124,7 +124,7 @@ POST /api/predict/
 
 ---
 
-## 🖥️ Frontend UI
+### 🖥️ Frontend UI
 
 - Built using plain HTML + Tailwind CSS
 - Allows users to:
@@ -135,7 +135,7 @@ POST /api/predict/
 
 ---
 
-## 🛠️ Tech Stack
+### 🛠️ Tech Stack
 
 - **Python**
 - **PyTorch**
@@ -148,7 +148,7 @@ POST /api/predict/
 
 ---
 
-## 🧠 Design Decisions
+### 🧠 Design Decisions
 
 - **DistilBERT** chosen over full BERT for faster inference with minimal accuracy loss
 - Model loaded **once at startup** for performance
@@ -157,7 +157,7 @@ POST /api/predict/
 
 ---
 
-## 🚧 Limitations
+### 🚧 Limitations
 
 - `conflict` class performance is limited due to severe class imbalance
 - Aspect extraction is not automated (user provides aspect)
@@ -165,7 +165,7 @@ POST /api/predict/
 
 ---
 
-## 🔮 Future Improvements
+### 🔮 Future Improvements
 
 - Automatic aspect extraction
 - Confidence thresholding & fallback responses
@@ -175,13 +175,13 @@ POST /api/predict/
 
 ---
 
-## 👤 Author
+### 👤 Author
 
 **Harsh Yadav**  
 NLP / Machine Learning Enthusiast
 
 ---
 
-## 📜 License
+### 📜 License
 
 This project is for educational and demonstration purposes.
