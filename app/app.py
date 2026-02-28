@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from pathlib import Path
 from pydantic import BaseModel
+from app.predict import predict
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 INDEX_FILE = BASE_DIR / "static" / "index.html"
@@ -18,5 +19,4 @@ def serve_index():
 
 @app.post('/api/predict/')
 def predict_feedback(req: Request):
-    from app.predict import predict
     return predict(req.sentence, req.aspect)
