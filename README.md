@@ -89,6 +89,51 @@ Sentiment + Confidence
 ├── README.md
 ```
 
+### ▶️ Run Locally
+
+#### 1️⃣ Clone the repository
+```bash
+git clone <your-repo-url>
+cd <repo-folder>
+```
+
+---
+
+#### 2️⃣ Create & activate virtual environment
+
+**Windows**
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+**Linux / macOS**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+---
+
+#### 3️⃣ Install dependencies
+```bash
+pip install fastapi "fastapi[standard]" torch transformers
+```
+
+---
+
+#### 4️⃣ Run FastAPI server
+```bash
+uvicorn app.app:app --reload
+```
+
+---
+
+#### 5️⃣ Open in browser
+
+- UI: http://127.0.0.1:8000/
+- API Docs: http://127.0.0.1:8000/docs
+
 ---
 
 ### ⚙️ API Endpoints
