@@ -93,8 +93,8 @@ Sentiment + Confidence
 
 #### 1️⃣ Clone the repository
 ```bash
-git clone <your-repo-url>
-cd <repo-folder>
+git clone https://github.com/harsh1214/feedback-analyzer/tree/main
+cd ./feedback-analyzer
 ```
 
 ---
