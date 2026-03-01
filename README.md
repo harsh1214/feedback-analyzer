@@ -124,7 +124,7 @@ pip install fastapi "fastapi[standard]" torch transformers
 
 #### 4️⃣ Run FastAPI server
 ```bash
-uvicorn app.app:app --reload
+uvicorn app.app:app
 ```
 
 ---
